@@ -9,6 +9,7 @@ import StudentSignup from './pages/StudentSignup';
 import StudentLogin from './pages/StudentLogin';
 import CourseForm from './pages/courseAddition'
 import NavigationBar from './pages/NavigationBar';
+import GeneratePdf from './pages/generate_pdf';
 import { useSelector } from 'react-redux';
 
 function App() {
@@ -23,7 +24,7 @@ function App() {
         <Route path="/proflogin" element={user ? <Navigate to="/" /> : <ProfLogin />} />
         <Route path="/studentsignup" element={user ? <Navigate to="/" /> : <StudentSignup />} />
         <Route path="/studentlogin" element={user ? <Navigate to="/" /> : <StudentLogin />} />
-        {/* <Route path="/generate-pdf" element={user ? <GeneratePDF /> : <Navigate to="/Login" />} /> */}
+        <Route path="/generate-pdf" element={user ? <GeneratePdf /> : <Navigate to="/Login"/>}/>
         <Route path="/register-student" element={user ? <StudentRegistration /> : <Navigate to="/login" />} />
         <Route path="/enter-course" element={user ? <CourseForm /> : <Navigate to="/login" />} />
         {/* <Route path="/" element={user ? <Home /> : <Navigate to="/Login" />} /> */}

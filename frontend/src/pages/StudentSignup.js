@@ -73,9 +73,7 @@ function StudentSignup() {
                 </div>
             </form>
         </div>
-      </form>
-    </div>
-  );
-};
+    );
+}
 
 export default StudentSignup;

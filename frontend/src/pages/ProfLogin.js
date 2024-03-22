@@ -68,18 +68,9 @@ function ProfLogin() {
                 <div className="form">
                     Don't have an account? <Link to="/profsignup">Sign up</Link>
                 </div>
-              </Form>
-            </Card.Body>
-            <Card.Footer>
-              <div className="w-100 text-center mt-2">
-                Don't have an account? <Link to="/profsignup">Sign up</Link>
-              </div>
-            </Card.Footer>
-          </Card>
-        </div>
-      </Container>
-    </div>
-  );
+            </div>
+        </form>
+    );
 }
 
 export default ProfLogin;
