@@ -1,30 +1,29 @@
-import React, { useState } from 'react';
-import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import React from 'react';
+import { BrowserRouter as Router, Routes, Route, Navigate } from 'react-router-dom';
 import './App.css';
-import HomePage from './pages/home'; // Your home page component
-import LoginPage from './pages/login'; // Your login page component
-import GeneratePDF from './components/GeneratePDF'; // Your GeneratePDF component
-import StudentRegistrationForm from './components/StudentRegistrationForm'; // Your StudentRegistrationForm component
-import CourseEntryForm from './components/CourseEntryForm'; // Your CourseEntryForm component
+// import GeneratePDF from './pages/generatepdf';
+import StudentRegistration from './pages/studentInfo';
+// import CourseEntryForm from './pages/courseaddition';
+import {Login} from './pages/login';
+import {Signup} from './pages/signup';
+import NavigationBar from './pages/NavigationBar'; // Adjust the path based on your structure
+import { useSelector } from 'react-redux';
 
 function App() {
-  const [isLoggedIn, setIsLoggedIn] = useState(false);
-
-  const handleLogin = (username, password) => {
-    // Here, you'd have actual logic to validate login credentials
-    setIsLoggedIn(true);
-    console.log(`Login attempt: Username: ${username}, Password: ${password}`);
-  };
+  const { user } = useSelector((state) => state.auth); // Assuming the auth state structure
 
   return (
     <Router>
+      <NavigationBar />
       <Routes>
-        <Route path="/" element={isLoggedIn ? <HomePage /> : <LoginPage onLogin={handleLogin} />} />
-        <Route path="/login" element={<LoginPage onLogin={handleLogin} />} />
-        <Route path="/generate-pdf" element={<GeneratePDF />} />
-        <Route path="/register-student" element={<StudentRegistrationForm />} />
-        <Route path="/enter-course" element={<CourseEntryForm />} />
-        {/* Add more routes as needed for other components/pages */}
+        <Route path="/login" element={user ? <Navigate to="/" /> : <Login />} />
+        <Route path="/signup" element={user ? <Navigate to="/" /> : <Signup />} />
+        {/* <Route path="/generate-pdf" element={user ? <GeneratePDF /> : <Navigate to="/login" />} /> */}
+        <Route path="/register-student" element={user ? <StudentRegistration /> : <Navigate to="/login" />} />
+        {/* <Route path="/enter-course" element={user ? <CourseEntryForm /> : <Navigate to="/login" />} /> */}
+        {/* Home page or default route */}
+        {/* <Route path="/" element={user ? <Home /> : <Navigate to="/login" />} /> */}
+        {/* Replace <Home /> with your actual home component */}
       </Routes>
     </Router>
   );
