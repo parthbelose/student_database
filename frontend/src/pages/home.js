@@ -10,6 +10,7 @@ const HomePage = () => {
           <a href="#">Features</a>
           <a href="#">About Us</a>
           <a href="#">Contact</a>
+          <a href='Login.jsx'></a>
         </nav>
       </header>
 
