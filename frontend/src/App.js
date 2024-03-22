@@ -1,17 +1,14 @@
 import React, { useState } from 'react';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import './App.css';
-import HomePage from './pages/home'; // Your home page component
-import LoginPage from './pages/login'; // Your login page component
-import GeneratePDF from './components/GeneratePDF'; // Your GeneratePDF component
-import StudentRegistrationForm from './components/StudentRegistrationForm'; // Your StudentRegistrationForm component
-import CourseEntryForm from './components/CourseEntryForm'; // Your CourseEntryForm component
+import HomePage from './pages/home'; // Assuming your home page component resides here
+import LoginPage from './pages/login'; // Assuming your login page component resides here
 
 function App() {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
 
   const handleLogin = (username, password) => {
-    // Here, you'd have actual logic to validate login credentials
+    // Simulate successful login (replace with actual validation)
     setIsLoggedIn(true);
     console.log(`Login attempt: Username: ${username}, Password: ${password}`);
   };
@@ -19,12 +16,12 @@ function App() {
   return (
     <Router>
       <Routes>
-        <Route path="/" element={isLoggedIn ? <HomePage /> : <LoginPage onLogin={handleLogin} />} />
+        <Route
+          path="/"
+          element={isLoggedIn ? <HomePage /> : <LoginPage onLogin={handleLogin} />}
+        />
         <Route path="/login" element={<LoginPage onLogin={handleLogin} />} />
-        <Route path="/generate-pdf" element={<GeneratePDF />} />
-        <Route path="/register-student" element={<StudentRegistrationForm />} />
-        <Route path="/enter-course" element={<CourseEntryForm />} />
-        {/* Add more routes as needed for other components/pages */}
+        {/* Add other routes for different pages here */}
       </Routes>
     </Router>
   );
