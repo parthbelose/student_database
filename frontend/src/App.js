@@ -16,7 +16,7 @@ function App() {
 
   return (
     <Router>
-      {/* <NavigationBar /> */}
+      <NavigationBar />
       <Routes>
         <Route path="/login" element={user ? <Navigate to="/" /> : <Login1 />} /> {/* Include Login1 route */}
         <Route path="/profsignup" element={user ? <Navigate to="/" /> : <ProfSignup />} />

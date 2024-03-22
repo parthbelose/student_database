@@ -19,7 +19,6 @@ function Login() {
             <br /><br /><br />
             <button className="input-box" onClick={redirectToProfessorLogin}>Professor</button>
             <br /><br />
-            </form>
         </div>
     );
 }
