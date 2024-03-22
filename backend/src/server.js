@@ -6,7 +6,6 @@ import { reviewRouter } from "./routes/review.js";
 import { signupRouter } from "./routes/signup.js";
 import { loginRouter } from "./routes/login.js";
 
-
 const app = express();
 app.use(cors());
 app.use(express.json());

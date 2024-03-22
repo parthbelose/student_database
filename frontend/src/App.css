@@ -36,3 +36,316 @@
     transform: rotate(360deg);
   }
 }
+
+
+/* Student info */
+/* Base reset for margin and padding */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  background-color: #f9f9f9; /* Light grey background */
+  color: #333;
+  line-height: 1.6;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 0;
+  padding: 20px;
+  background-image: url('5836.jpg');
+  /* background-image: url('img.jpg'); */
+  background-size:750px; /* Cover the entire page */
+  background-position: center;
+}
+
+.container {
+  background: #fff; /* White background */
+  padding: 40px;
+  border-radius: 20px;
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+  display: flex;
+  flex-direction: column;
+}
+
+h1 {
+  text-align: center;
+  color: #333;
+  margin-bottom: 24px;
+  font-size: 2.5rem;
+  width: 100%; /* Ensure h1 spans full width */
+}
+
+.form-section {
+  flex: 1; /* Each section takes up equal space */
+  padding: 0 20px;
+}
+
+.form-group {
+  margin-bottom: 1.5rem;
+}
+
+.form-group label {
+  display: block;
+  margin-bottom: .5rem;
+  color: #555;
+}
+
+input[type="text"],
+input[type="date"],
+input[type="file"],
+button[type="submit"],
+select {
+  width: 100%;
+  padding: 12px;
+  border-radius: 8px;
+  border: none;
+  outline: none;
+  font-size: 1rem;
+  color: #333;
+  background: #f4f4f4;
+}
+
+input[type="text"]:focus,
+input[type="date"]:focus {
+  background: #f4f4f4;
+  color: #333;
+}
+
+button[type="submit"] {
+  cursor: pointer;
+  font-weight: bold;
+  text-transform: uppercase;
+  background: #007bff; /* School blue */
+  color: white;
+  transition: background-color 0.3s;
+}
+
+button[type="submit"]:hover {
+  background: #0056b3; /* Darker blue on hover */
+}
+
+/* Enhancing focus styles */
+input[type="text"]:focus,
+input[type="date"]:focus,
+input[type="file"]:focus {
+  box-shadow: 0 0 0 2px #007bff; /* School blue glow on focus */
+}
+
+/* Adjust margins for visual spacing */
+.form-group + .form-group {
+  margin-top: 1.5rem;
+}
+.container {
+    width: 90%;
+    max-width: 1000px;
+    margin: auto;
+    padding: 20px;
+    background: #fff;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  }
+  
+  h1 {
+    text-align: center;
+    margin-bottom: 20px;
+  }
+  
+  .sections {
+    display: flex;
+    justify-content: space-between;
+  }
+  
+  .form-section {
+    flex: 1;
+    margin: 0 10px;
+  }
+  /* The CSS reset and body styling remain the same */
+
+.container {
+    width: 90%;
+    max-width: 1000px;
+    margin: auto;
+    padding: 20px;
+    background: #fff;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  }
+  
+  h1 {
+    text-align: center;
+    margin-bottom: 20px;
+  }
+  
+  .sections {
+    display: flex;
+    justify-content: space-between;
+  }
+  
+  .form-section {
+    flex: 1;
+    margin: 0 10px;
+  }
+  
+  /* Adjusting address input width */
+  #address {
+    width: calc(100% - 20px); /* To accommodate for margins */
+  }
+  
+  /* Centering the register button */
+  .register-button {
+    display: block;
+    margin: 0 auto;
+  }
+
+  /* PDF generator */
+  body, html {
+    margin: 0;
+    padding: 0;
+    height: 100%;
+    font-family: Arial, sans-serif;
+}
+
+.container {
+    display: flex;
+    height: 100vh;
+}
+
+.left-section, .right-section {
+    flex: 1;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+}
+
+.left-section {
+    padding: 20px;
+    text-align: center;
+}
+
+.left-section > h1 {
+    margin-top: 0;
+    color: #333;
+}
+
+#hall-ticket-table {
+    margin: auto;
+    margin-bottom: 20px;
+}
+
+#hall-ticket-table th, #hall-ticket-table td {
+    text-align: left;
+    padding: 8px;
+}
+
+#hall-ticket-table th {
+    background-color: #f4f4f4;
+}
+
+#generate-pdf {
+    padding: 10px 20px;
+    font-size: 16px;
+    background-color: red;
+    color: white;
+    border: none;
+    border-radius: 20px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    align-self: center;
+    width: 200px;
+}
+
+#generate-pdf:hover {
+    background-color: darkred;
+}
+
+.right-section img {
+    width: 100%; /* Make sure the image covers the full width of the right-section */
+    object-fit: cover; /* This will make sure that the aspect ratio of the image is preserved */
+}
+#pdfheading1{
+    margin-top: 20px;
+}
+
+/* Course Addition */
+body {
+  font-family: sans-serif;
+  margin: 0;
+  /* padding: 20px; */
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  height: 100%;
+  background-color: linear-gradient(#0F1035,#365486);
+  background-color: #DCF2F1;
+  /* background-color: #f5f5f5; */
+}
+.h1bg{
+  background-color: #0F1035;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+}
+h1 {
+  margin-bottom: 20px;
+  font-size:50px;
+  height:200px;
+  margin-left: 20px;   
+  align-self: center;
+  color: #FFF6E9;              
+}
+
+input[type="text"] {
+  width: 100%;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 3px;
+  margin:10px;
+}
+button {
+  padding: 1.3em 3em;
+  font-size: 12px;
+  text-transform: uppercase;
+  letter-spacing: 2.5px;
+  font-weight: 500;
+  color: #000;
+  background-color: #fff;
+  border: none;
+  border-radius: 45px;
+  box-shadow: 0px 8px 15px rgba(0, 0, 0, 0.1);
+  transition: all 0.3s ease 0s;
+  cursor: pointer;
+  outline: none;
+  width: 200px;
+  align-self:center;
+}
+#course-form{
+  display: flex;
+  justify-content: space-around;
+  margin: 40px;
+  font-size: large;
+}
+#full-form{
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;   
+}
+button:hover {
+  background-color: #23c483;
+  box-shadow: 0px 15px 20px rgba(46, 229, 157, 0.4);
+  color: #fff;
+  transform: translateY(-7px);
+}
+
+button:active {
+  transform: translateY(-1px);
+}
+#imageforca{
+  
+  width: 100%; 
+  margin-bottom: 0;
+}
