@@ -14,7 +14,7 @@ function Login() {
     };
 
     return (
-        <div>
+        <div classname="card">
             <button className="input-box" onClick={redirectToStudentLogin}>Student</button>
             <br /><br /><br />
             <button className="input-box" onClick={redirectToProfessorLogin}>Professor</button>
