@@ -1,56 +1,53 @@
-import React, { useEffect } from 'react';
-import './styles.css'; // Import your CSS file
-import { Link , useNavigate } from 'react-router-dom';
+// StudentLogin.jsx
+
+import React, { useState } from 'react';
+import { Link, useNavigate } from 'react-router-dom';
+import axios from 'axios';
+
 function StudentLogin() {
-    // useEffect(() => {
-    //     const submit = document.getElementById('submit');
-    //     submit.addEventListener("click", function (event) {
-    //         event.preventDefault()
-    //         const auth = getAuth();
+  const navigate = useNavigate();
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
 
-    //         //inputs
-    //         const email = document.getElementById('email').value;
-    //         const password = document.getElementById('password').value;
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    try {
+      // Send email and password in the request payload
+      const { data } = await axios.post('http://localhost:3001/login', { email, password });
+      if (data.success) {
+        alert(data.message);
+        localStorage.setItem('userId', email);
+        localStorage.setItem('role', 'student'); // Set role as 'student' for student login
+        navigate('/');
+      } else {
+        alert(data.message);
+      }
+    } catch (error) {
+      console.error(error);
+      alert('Invalid credentials');
+    }
+  };
 
-    //         signInWithEmailAndPassword(auth, email, password)
-    //             .then((userCredential) => {
-    //                 // Signed in
-    //                 const user = userCredential.user;
-    //                 alert("Login Successful")
-    //                 window.location.href = "Dashboard.html";
-    //                 // ...
-    //             })
-    //             .catch((error) => {
-    //                 const errorCode = error.code;
-    //                 const errorMessage = error.message;
-    //                 alert(errorMessage)
-    //                 // ..
-    //             });
-    //     });
-    // }, []);
+  return (
+    <form onSubmit={handleSubmit}>
+      <div className="card">
+        <h1>Login to Student Account</h1>
+        <br /><br />
 
-    return (
-        <form>
-            <div className="card">
-                <h1>Login to Student Account</h1> <br /><br />
+        <label htmlFor="email"></label>
+        <input type="email" className="input-box" placeholder="Email" id="email" value={email} onChange={(e) => setEmail(e.target.value)} required /><br /><br />
 
-                <label htmlFor="email"> </label>
-                <input type="email" className="input-box" placeholder="Email" id="email" required /><br /><br />
+        <label htmlFor="password"></label>
+        <input type="password" className="input-box" placeholder="Create password" id="password" value={password} onChange={(e) => setPassword(e.target.value)} required /><br /><br />
 
-                <label htmlFor="password"></label>
-                <input type="password" className="input-box" placeholder="Create password" id="password" required /><br /><br />
+        <button className="input-box" type="submit">Log In</button><br /><br />
 
-                {/* <label htmlFor="cpassword"></label>
-                <input type="cpassword" placeholder="Confirm password" id="cpassword" required /><br /><br /> */}
-
-                <button id="submit" className="input-box" type="submit">Log In</button><br /><br />
-
-                <div className="form">
-                Don't have an account? <Link to="/studetsignup">Sign in</Link>
-                </div>
-            </div>
-        </form>
-    );
+        <div className="form">
+          Don't have an account? <Link to="/studentsignup">Sign up</Link>
+        </div>
+      </div>
+    </form>
+  );
 }
 
 export default StudentLogin;

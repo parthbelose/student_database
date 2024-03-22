@@ -1,67 +1,103 @@
-import React, { useEffect } from 'react';
-import './styles.css'; // Import your CSS file
-import { getAuth, createUserWithEmailAndPassword } from 'firebase/auth'; // Import auth functions from Firebase
-import { Link , useNavigate } from 'react-router-dom';
-function ProfSignup() {
-    useEffect(() => {
-        const submit = document.getElementById('submit');
-        submit.addEventListener("click", function (event) {
-            event.preventDefault();
-            const auth = getAuth();
+import React, { useState } from 'react';
+import { Form, Button, Card } from 'react-bootstrap';
+import { Container } from 'react-bootstrap';
+import { Link, useNavigate } from 'react-router-dom';
+import { useDispatch } from 'react-redux'; // Import useDispatch hook
+import { loginSuccess } from '../redux/features/authSlice'; // Import loginSuccess action
+import axios from "axios";
 
-            //inputs
-            const email = document.getElementById('email').value;
-            const password = document.getElementById('password').value;
+export const ProfSignup = () => {
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
+  const [role, setRole] = useState('teacher'); // Set role to 'teacher' for teacher signup
+  const navigate = useNavigate();
+  const dispatch = useDispatch(); // Initialize useDispatch hook
 
-            createUserWithEmailAndPassword(auth, email, password)
-                .then((userCredential) => {
-                    // Signed up 
-                    const user = userCredential.user;
-                    alert("Account Created");
-                    window.location.href = "ProfLogin.html";
-                    // ...
-                })
-                .catch((error) => {
-                    const errorCode = error.code;
-                    const errorMessage = error.message;
-                    alert(errorMessage);
-                    // ..
-                });
-        });
-    }, []);
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    try {
+      const { data } = await axios.post('http://localhost:3001/signup', { email, password, role }); // Include role in the request
+      console.log(data);
+      if (data.success) { 
+        alert(data.message);
+        localStorage.setItem("userId", email);
+        // Dispatch loginSuccess action with the user data
+        dispatch(loginSuccess({ user: email, isAuthenticated: true }));
+        navigate('/proflogin');
+      } else { 
+        alert(data.message); 
+      }
+    } catch(error) {
+      console.log(error);
+    }
+  };
 
-    return (
-        <div>
-            <div className="background">
-                <div className="shape"></div>
-                <div className="shape"></div>
-            </div>
-
-            <form>
-                <div className="card">
-                    <h1>Create Professor Account</h1> <br /><br />
-
-                    <label htmlFor="email"></label>
-                    <input type="email" className="input-box" placeholder="Email" id="email" required /><br /><br />
-
-                    <label htmlFor="password"></label>
-                    <input type="password" className="input-box" placeholder="Create password" id="password" required /><br /><br />
-
-                    {/* <label htmlFor="cpassword"></label>
-                    <input type="cpassword" placeholder="Confirm password" id="cpassword" required /><br /><br /> */}
-
-                    <button id="submit" className="input-box" type="submit">Create Account</button><br /><br />
-
-                    <div className="form">
-                    <div className="w-100 text-center mt-2">
-                  Already have an account? <Link to="/proflogin">Log in</Link>
+  return (
+    <div
+      id='signuppp'
+      style={{
+        minHeight: '100vh',
+        backgroundSize: 'cover',
+      }}
+    >
+      <>
+        <Container
+          className=" d-flex justify-content-center align-items-center "
+          style={{ minHeight: '100vh' }}
+        >
+          <div className="w-100" style={{ maxWidth: '400px' }}>
+            <Card className="row border rounded-5 p-3 bg-white shadow box-area">
+              <Card.Body>
+                <p className="text-center mb-4"><h2>Hi there!! </h2>We are happy to see you</p>
+                <Form onSubmit={handleSubmit}>
+                  <Form.Group id="email">
+                    <Form.Label>Email</Form.Label>
+                    <Form.Control
+                      type="email"
+                      placeholder="Email"
+                      required
+                      value={email}
+                      onChange={(e) => setEmail(e.target.value)}
+                    />
+                  </Form.Group>
+                  <Form.Group id="password">
+                    <Form.Label>Password</Form.Label>
+                    <Form.Control
+                      type="password"
+                      placeholder="Password"
+                      required
+                      value={password}
+                      onChange={(e) => setPassword(e.target.value)}
+                    />
+                  </Form.Group>
+                  <Form.Group id="role">
+                    <Form.Label>Role</Form.Label>
+                    <Form.Select
+                      value={role}
+                      onChange={(e) => setRole(e.target.value)}
+                    >
+                      <option value="teacher">Teacher</option>
+                      <option value="student">Student</option> {/* Swap order if you want student first */}
+                    </Form.Select>
+                  </Form.Group>
+                  <div style={{ display: "flex", justifyContent: "center" }}>
+                    <Button type="submit" className="b">
+                      Sign up
+                    </Button>
+                  </div>
+                </Form>
+              </Card.Body>
+              <Card.Footer>
+                <div className="w-100 text-center mt-2">
+                  Already have an account? <Link to="/login">Log in</Link>
                 </div>
-
-                    </div>
-                </div>
-            </form>
-        </div>
-    );
-}
+              </Card.Footer>
+            </Card>
+          </div>
+        </Container>
+      </>
+    </div>
+  );
+};
 
 export default ProfSignup;

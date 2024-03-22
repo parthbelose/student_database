@@ -21,7 +21,7 @@ function App() {
         <Route path="/Login" element={user ? <Navigate to="/" /> : <Login1 />} /> {/* Include Login1 route */}
         <Route path="/profsignup" element={user ? <Navigate to="/" /> : <ProfSignup />} />
         <Route path="/proflogin" element={user ? <Navigate to="/" /> : <ProfLogin />} />
-        <Route path="/studetsignup" element={user ? <Navigate to="/" /> : <StudentSignup />} />
+        <Route path="/studentsignup" element={user ? <Navigate to="/" /> : <StudentSignup />} />
         <Route path="/studentlogin" element={user ? <Navigate to="/" /> : <StudentLogin />} />
         {/* <Route path="/generate-pdf" element={user ? <GeneratePDF /> : <Navigate to="/Login" />} /> */}
         <Route path="/register-student" element={!user ? <StudentRegistration /> : <Navigate to="/Login" />} />
