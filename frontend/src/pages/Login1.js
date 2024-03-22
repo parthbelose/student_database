@@ -14,11 +14,12 @@ function Login() {
     };
 
     return (
-        <div classname="card">
+        <div>
             <button className="input-box" onClick={redirectToStudentLogin}>Student</button>
             <br /><br /><br />
             <button className="input-box" onClick={redirectToProfessorLogin}>Professor</button>
             <br /><br />
+            </form>
         </div>
     );
 }

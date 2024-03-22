@@ -16,16 +16,16 @@ function App() {
 
   return (
     <Router>
-      <NavigationBar />
+      {/* <NavigationBar /> */}
       <Routes>
-        <Route path="/Login" element={user ? <Navigate to="/" /> : <Login1 />} /> {/* Include Login1 route */}
+        <Route path="/login" element={user ? <Navigate to="/" /> : <Login1 />} /> {/* Include Login1 route */}
         <Route path="/profsignup" element={user ? <Navigate to="/" /> : <ProfSignup />} />
         <Route path="/proflogin" element={user ? <Navigate to="/" /> : <ProfLogin />} />
         <Route path="/studentsignup" element={user ? <Navigate to="/" /> : <StudentSignup />} />
         <Route path="/studentlogin" element={user ? <Navigate to="/" /> : <StudentLogin />} />
         {/* <Route path="/generate-pdf" element={user ? <GeneratePDF /> : <Navigate to="/Login" />} /> */}
-        <Route path="/register-student" element={!user ? <StudentRegistration /> : <Navigate to="/Login" />} />
-        <Route path="/enter-course" element={user ? <CourseForm /> : <Navigate to="/Login" />} />
+        <Route path="/register-student" element={user ? <StudentRegistration /> : <Navigate to="/login" />} />
+        <Route path="/enter-course" element={user ? <CourseForm /> : <Navigate to="/login" />} />
         {/* <Route path="/" element={user ? <Home /> : <Navigate to="/Login" />} /> */}
       </Routes>
     </Router>

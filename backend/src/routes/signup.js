@@ -23,7 +23,7 @@ router.post("/signup", async (req, res) => {
              password: hashedPassword,
              role
          });
-
+         await newUser.save();
          if (role === 'teacher') {
             const newTeacher = new Teacher({
                 user: newUser._id,
