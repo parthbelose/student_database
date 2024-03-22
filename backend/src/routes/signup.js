@@ -5,6 +5,7 @@ import { Teacher } from "../models/teacher.js";
 import bcrypt from 'bcrypt';
 
 router.post("/signup", async (req, res) => {
+    console.log(req.body)
     const { email, password, role } = req.body;
     try {
         // Check if user already exists

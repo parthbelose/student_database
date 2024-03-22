@@ -3,9 +3,9 @@ const router = express.Router();
 import { review } from "../models/review.js";
 
 router.post("/reviews", async (req, res) => {
+  console.log('hello');
     const { reviews } = req.body;
     const r = new review ({  reviews  });
-  
     try {
       await r.save();
       res.status(201).json({
