@@ -22,4 +22,4 @@ app.use(reviewRouter)
 app.use(signupRouter)
 app.use(loginRouter)
 
-app.listen(3000, () => console.log("Server started"));
+app.listen(3001, () => console.log("Server started"));

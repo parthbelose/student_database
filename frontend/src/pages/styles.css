@@ -1,9 +1,9 @@
 /* Global styles */
-* {
+/* * {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
-}
+} */
 
 body {
     font-family: Arial, sans-serif;
@@ -25,35 +25,53 @@ body {
 }
 
 .card-login{
-position: absolute;
-top: 50%;
-left: 50%;
-transform: translate(-50%, -50%);
-width: auto;
-padding: 20px;
-border-radius: 10px;
-background-color: #fff;
-box-shadow: 0 0 20px rgba(0, 0, 0, 0.1); /* Increased shadow */
-text-align: center;
-display: flex;
-align-items: center;
-text-align: center;
-margin-left: 20px;
-}
+    /* styles.css */
+    position:absolute;
+    top:50%;
+    left:50%;
+    transform: translate(-50%, -50%);
+    width: 300px;
+    margin: 0 auto;
+    padding: 20px;
+    background-color: #fff;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    text-align: center;
+  }
+  
+  .input-box {
+    width: 100%;
+    padding: 10px;
+    margin-top: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    outline: none;
+  }
+  
+  .input-box:focus {
+    border-color: #007bff;
+  }
+  
+  button {
+    width: 100%;
+    padding: 10px;
+    margin-top: 10px;
+    border: none;
+    border-radius: 5px;
+    background-color: #007bff;
+    color: #fff;
+    font-size: 16px;
+    cursor: pointer;
+    outline: none;
+  }
+  
+  button:hover {
+    background-color: #0056b3;
+  }
+  
 
 
 
-.image-container {
-flex: auto;
-margin-right: 20px;
-margin-left: 20px;
-}
-
-.links-container {
-flex: 1 ;
-text-align: right;
-margin-left: 20px;
-}
 
 
 

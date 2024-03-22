@@ -1,34 +1,34 @@
-import React, { useEffect } from 'react';
-import './styles.css'; // Import your CSS file
-import { getAuth, createUserWithEmailAndPassword } from 'firebase/auth'; // Import auth functions from Firebase
-import { Link , useNavigate } from 'react-router-dom';
+import React, { useState } from 'react';
+import { Form, Button, Card } from 'react-bootstrap';
+import { Container } from 'react-bootstrap';
+import { Link, useNavigate } from 'react-router-dom';
+import axios from 'axios'; // Import Axios
+
 function ProfSignup() {
-    useEffect(() => {
-        const submit = document.getElementById('submit');
-        submit.addEventListener("click", function (event) {
-            event.preventDefault();
-            const auth = getAuth();
+    const [email, setEmail] = useState('');
+    const [password, setPassword] = useState('');
+    const navigate = useNavigate();
 
-            //inputs
-            const email = document.getElementById('email').value;
-            const password = document.getElementById('password').value;
-
-            createUserWithEmailAndPassword(auth, email, password)
-                .then((userCredential) => {
-                    // Signed up 
-                    const user = userCredential.user;
-                    alert("Account Created");
-                    window.location.href = "ProfLogin.html";
-                    // ...
-                })
-                .catch((error) => {
-                    const errorCode = error.code;
-                    const errorMessage = error.message;
-                    alert(errorMessage);
-                    // ..
-                });
-        });
-    }, []);
+    const handleSubmit = async (event) => {
+        event.preventDefault();
+        try {
+            const response = await axios.post('http://localhost:3001/signup', {
+                email,
+                password,
+                role: 'teacher', // Set the role to 'teacher'
+            });
+            console.log(response.data);
+            if (response.data.success) {
+                alert('Account created successfully');
+                navigate('/proflogin'); // Redirect to professor login page after successful signup
+            } else {
+                alert(response.data.message);
+            }
+        } catch (error) {
+            console.error('Signup error:', error);
+            alert('An error occurred during signup.');
+        }
+    };
 
     return (
         <div>
@@ -37,26 +37,38 @@ function ProfSignup() {
                 <div className="shape"></div>
             </div>
 
-            <form>
+            <form onSubmit={handleSubmit}>
                 <div className="card">
                     <h1>Create Professor Account</h1> <br /><br />
 
                     <label htmlFor="email"></label>
-                    <input type="email" className="input-box" placeholder="Email" id="email" required /><br /><br />
+                    <input
+                        type="email"
+                        className="input-box"
+                        placeholder="Email"
+                        id="email"
+                        required
+                        value={email}
+                        onChange={(e) => setEmail(e.target.value)}
+                    /><br /><br />
 
                     <label htmlFor="password"></label>
-                    <input type="password" className="input-box" placeholder="Create password" id="password" required /><br /><br />
+                    <input
+                        type="password"
+                        className="input-box"
+                        placeholder="Create password"
+                        id="password"
+                        required
+                        value={password}
+                        onChange={(e) => setPassword(e.target.value)}
+                    /><br /><br />
 
-                    {/* <label htmlFor="cpassword"></label>
-                    <input type="cpassword" placeholder="Confirm password" id="cpassword" required /><br /><br /> */}
-
-                    <button id="submit" className="input-box" type="submit">Create Account</button><br /><br />
+                    <button className="input-box" type="submit">Create Account</button><br /><br />
 
                     <div className="form">
-                    <div className="w-100 text-center mt-2">
-                  Already have an account? <Link to="/proflogin">Log in</Link>
-                </div>
-
+                        <div className="w-100 text-center mt-2">
+                            Already have an account? <Link to="/proflogin">Log in</Link>
+                        </div>
                     </div>
                 </div>
             </form>
