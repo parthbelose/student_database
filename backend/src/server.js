@@ -5,6 +5,8 @@ import cors from "cors";
 import { reviewRouter } from "./routes/review.js";
 import { signupRouter } from "./routes/signup.js";
 import { loginRouter } from "./routes/login.js";
+import { updateApprovalStatusRouter } from "./routes/approval.js"; 
+import { registerStudentRouter } from  './routes/studentinfo.js';
 
 const app = express();
 app.use(cors());
