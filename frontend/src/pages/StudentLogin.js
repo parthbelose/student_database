@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react';
 import './styles.css'; // Import your CSS file
-
+import { Link , useNavigate } from 'react-router-dom';
 function StudentLogin() {
     // useEffect(() => {
     //     const submit = document.getElementById('submit');
@@ -46,9 +46,7 @@ function StudentLogin() {
                 <button id="submit" className="input-box" type="submit">Log In</button><br /><br />
 
                 <div className="form">
-                    <p>Don't have an account?
-                        <span><a className="glow-text" href="StudentSignup.html">Signup here</a></span>
-                    </p>
+                Don't have an account? <Link to="/studetsignup">Sign in</Link>
                 </div>
             </div>
         </form>

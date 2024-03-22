@@ -2,7 +2,7 @@
 
 import React from 'react';
 import './styles.css'; // Import your CSS file
-
+import { Link , useNavigate } from 'react-router-dom';
 function ProfLogin() {
     const handleSubmit = (event) => {
         event.preventDefault();
@@ -31,9 +31,8 @@ function ProfLogin() {
                 <button className="input-box" type="submit">Log In</button><br /><br />
 
                 <div className="form">
-                    <p>Don't have an account?
-                        <span><a className="glow-text" href="ProfSignup.html">Signup here</a></span>
-                    </p>
+                
+                  Don't have an account? <Link to="/profsignup">Sign in</Link>
                 </div>
             </div>
         </form>
