@@ -11,7 +11,7 @@ import CourseForm from './pages/courseAddition'
 import NavigationBar from './pages/NavigationBar';
 import GeneratePdf from './pages/generate_pdf';
 import { useSelector } from 'react-redux';
-
+import CourseSelect from './pages/course_select';
 function App() {
   const { user } = useSelector((state) => state.auth);
 
@@ -27,6 +27,8 @@ function App() {
         <Route path="/generate-pdf" element={user ? <GeneratePdf /> : <Navigate to="/Login"/>}/>
         <Route path="/register-student" element={user ? <StudentRegistration /> : <Navigate to="/login" />} />
         <Route path="/enter-course" element={user ? <CourseForm /> : <Navigate to="/login" />} />
+        <Route path="/course-select" element={user ? <CourseSelect /> : <Navigate to="/Login"/>}/>
+
         {/* <Route path="/" element={user ? <Home /> : <Navigate to="/Login" />} /> */}
       </Routes>
     </Router>

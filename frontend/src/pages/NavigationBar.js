@@ -22,6 +22,7 @@ const NavigationBar = () => {
                 <li className="nav-item"><Link className="nav-link" to="/generate-pdf">Generate PDF</Link></li>
                 <li className="nav-item"><Link className="nav-link" to="/register-student">Register Student</Link></li>
                 <li className="nav-item"><Link className="nav-link" to="/enter-course">Enter Course</Link></li>
+                <li className="nav-item"><Link className="nav-link" to="/course-select">Course Select</Link></li>
               </>
             ) : (
               <>
