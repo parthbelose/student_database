@@ -46,15 +46,15 @@ const StudentRegistration = () => {
             <form id="left-form">
               <div style={{ marginBottom: '1.5rem' }}>
                 <label htmlFor="name" style={{ display: 'block', marginBottom: '.5rem', color: '#555' }}>Name:</label>
-                <input type="text" id="name" name="name" value={name} onChange={(e) => setName(e.target.value)} required style={{ width: '80%', padding: '12px', borderRadius: '8px', border: 'none', outline: 'none', fontSize: '1rem', color: '#333', background: '#f4f4f4' }} />
+                <input type="text" id="name" name="name" value={name} onChange={(e) => setName(e.target.value)} required style={{ width: '100%', padding: '12px', borderRadius: '8px', border: 'none', outline: 'none', fontSize: '1rem', color: '#333', background: '#f4f4f4' }} />
               </div>
               <div style={{ marginBottom: '1.5rem' }}>
                 <label htmlFor="reg-number" style={{ display: 'block', marginBottom: '.5rem', color: '#555' }}>Registration Number:</label>
-                <input type="text" id="reg-number" name="regNumber" value={regNumber} onChange={(e) => setRegNumber(e.target.value)} required style={{ width: '80%', padding: '12px', borderRadius: '8px', border: 'none', outline: 'none', fontSize: '1rem', color: '#333', background: '#f4f4f4' }} />
+                <input type="text" id="reg-number" name="regNumber" value={regNumber} onChange={(e) => setRegNumber(e.target.value)} required style={{ width: '100%', padding: '12px', borderRadius: '8px', border: 'none', outline: 'none', fontSize: '1rem', color: '#333', background: '#f4f4f4' }} />
               </div>
               <div style={{ marginBottom: '1.5rem' }}>
                 <label htmlFor="birthdate" style={{ display: 'block', marginBottom: '.5rem', color: '#555' }}>Birthdate:</label>
-                <input type="date" id="birthdate" name="birthdate" value={birthdate} onChange={(e) => setBirthdate(e.target.value)} required style={{ width: '80%', padding: '12px', borderRadius: '8px', border: 'none', outline: 'none', fontSize: '1rem', color: '#333', background: '#f4f4f4' }} />
+                <input type="date" id="birthdate" name="birthdate" value={birthdate} onChange={(e) => setBirthdate(e.target.value)} required style={{ width: '100%', padding: '12px', borderRadius: '8px', border: 'none', outline: 'none', fontSize: '1rem', color: '#333', background: '#f4f4f4' }} />
               </div>
               <div style={{ marginBottom: '1.5rem' }}>
                 <label htmlFor="address" style={{ display: 'block', marginBottom: '.5rem', color: '#555' }}>Address:</label>
@@ -66,7 +66,7 @@ const StudentRegistration = () => {
             <form id="right-form">
               <div style={{ marginBottom: '1.5rem' }}>
                 <label htmlFor="gender" style={{ display: 'block', marginBottom: '.5rem', color: '#555' }}>Gender:</label>
-                <select name="gender" id="gender" required style={{ width: '80%', padding: '12px', borderRadius: '8px', border: 'none', outline: 'none', fontSize: '1rem', color: '#333', background: '#f4f4f4' }}>
+                <select name="gender" id="gender" required style={{ width: '100%', padding: '12px', borderRadius: '8px', border: 'none', outline: 'none', fontSize: '1rem', color: '#333', background: '#f4f4f4' }}>
                   <option value="male">Male</option>
                   <option value="female">Female</option>
                   <option value="other">Other</option>
@@ -74,7 +74,7 @@ const StudentRegistration = () => {
               </div>
               <div style={{ marginBottom: '1.5rem' }}>
                 <label htmlFor="status" style={{ display: 'block', marginBottom: '.5rem', color: '#555' }}>Status:</label>
-                <select name="status" id="status" required style={{ width: '80%', padding: '12px', borderRadius: '8px', border: 'none', outline: 'none', fontSize: '1rem', color: '#333', background: '#f4f4f4' }}>
+                <select name="status" id="status" required style={{ width: '100%', padding: '12px', borderRadius: '8px', border: 'none', outline: 'none', fontSize: '1rem', color: '#333', background: '#f4f4f4' }}>
                   <option value="local">Local</option>
                   <option value="hostelite">Hostelite</option>
                 </select>
