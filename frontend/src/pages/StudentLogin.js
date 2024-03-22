@@ -1,28 +1,32 @@
 import React, { useState } from 'react';
-import './styles.css'; // Import your CSS file
-import { Link, useNavigate } from 'react-router-dom';
+// Import useDispatch from react-redux
+import { useDispatch } from 'react-redux';
+import { useNavigate,Link } from 'react-router-dom';
 import axios from 'axios';
+// Import your loginSuccess action
+import { loginSuccess } from '../redux/features/authSlice'; // Adjust the import path as necessary
 
 function StudentLogin() {
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
     const navigate = useNavigate();
+    // Initialize useDispatch
+    const dispatch = useDispatch();
 
     const handleSubmit = async (event) => {
-        event.preventDefault(); // Prevent the form from submitting the traditional way
+        event.preventDefault();
         try {
-            // Perform a POST request to your login endpoint
             const response = await axios.post('http://localhost:3001/login', {
                 email: email,
                 password: password,
-                role: 'student', // Specify the role if your API requires it
+                role: 'student',
             });
             
-            // Check if login is successful based on your response schema
             if (response.data.success) {
                 console.log('Login successful');
-                // Redirect or perform actions after successful login
-                navigate('/'); // Example redirect, adjust according to your needs
+                // Dispatch loginSuccess action with user info
+                dispatch(loginSuccess(response.data.user));
+                navigate('/');
             } else {
                 alert('Login failed: ' + response.data.message);
             }
@@ -31,7 +35,6 @@ function StudentLogin() {
             alert('An error occurred during login.');
         }
     };
-
     return (
         <form onSubmit={handleSubmit}>
             <div className="card">
