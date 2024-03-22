@@ -9,14 +9,16 @@ import axios from "axios";
 export const Signup = () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
+  const [role, setRole] = useState('student'); // Initialize role state with default value
   const navigate = useNavigate();
   const dispatch = useDispatch(); // Initialize useDispatch hook
 
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      const { data } = await axios.post('http://localhost:3001/register', { email, password });
-      if (data.success) { 
+    const { data } = await axios.post('http://localhost:3001/signup', { email, password, role }); // Include role in the request
+      console.log(data);
+    if (data.success) { 
         alert(data.message);
         localStorage.setItem("userId", email);
         // Dispatch loginSuccess action with the user data
@@ -49,7 +51,7 @@ export const Signup = () => {
                 <p className="text-center mb-4"><h2>Hi there!! </h2>We are happy to see you</p>
                 <Form onSubmit={handleSubmit}>
                   <Form.Group id="email">
-                    <Form.Label></Form.Label>
+                    <Form.Label>Email</Form.Label>
                     <Form.Control
                       type="email"
                       placeholder="Email"
@@ -59,7 +61,7 @@ export const Signup = () => {
                     />
                   </Form.Group>
                   <Form.Group id="password">
-                    <Form.Label></Form.Label>
+                    <Form.Label>Password</Form.Label>
                     <Form.Control
                       type="password"
                       placeholder="Password"
@@ -67,6 +69,16 @@ export const Signup = () => {
                       value={password}
                       onChange={(e) => setPassword(e.target.value)}
                     />
+                  </Form.Group>
+                  <Form.Group id="role">
+                    <Form.Label>Role</Form.Label>
+                    <Form.Select
+                      value={role}
+                      onChange={(e) => setRole(e.target.value)}
+                    >
+                      <option value="student">Student</option>
+                      <option value="teacher">Teacher</option>
+                    </Form.Select>
                   </Form.Group>
                   <div style={{ display: "flex", justifyContent: "center" }}>
                     <Button type="submit" className="b">
