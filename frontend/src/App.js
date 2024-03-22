@@ -56,10 +56,10 @@ function App() {
         <Route path="/proflogin" element={user ? <Navigate to="/" /> : <ProfLogin />} />
         <Route path="/studetsignup" element={user ? <Navigate to="/" /> : <StudentSignup />} />
         <Route path="/studentlogin" element={user ? <Navigate to="/" /> : <StudentLogin />} />
-        {/* <Route path="/generate-pdf" element={user ? <GeneratePDF /> : <Navigate to="/Login" />} />
+        <Route path="/generate-pdf" element={user ? <GeneratePDF /> : <Navigate to="/Login" />} />
         <Route path="/register-student" element={user ? <StudentRegistration /> : <Navigate to="/Login" />} />
         <Route path="/enter-course" element={user ? <CourseEntryForm /> : <Navigate to="/Login" />} />
-        <Route path="/" element={user ? <Home /> : <Navigate to="/Login" />} /> */}
+        <Route path="/" element={user ? <Home /> : <Navigate to="/Login" />} />
       </Routes>
     </Router>
   );
