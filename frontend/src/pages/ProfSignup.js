@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react';
 import './styles.css'; // Import your CSS file
 import { getAuth, createUserWithEmailAndPassword } from 'firebase/auth'; // Import auth functions from Firebase
-
+import { Link , useNavigate } from 'react-router-dom';
 function ProfSignup() {
     useEffect(() => {
         const submit = document.getElementById('submit');
@@ -53,9 +53,10 @@ function ProfSignup() {
                     <button id="submit" className="input-box" type="submit">Create Account</button><br /><br />
 
                     <div className="form">
-                        <p>Have an account?
-                            <span><a className="glow-text" href="ProfLogin.html">Login here</a></span>
-                        </p>
+                    <div className="w-100 text-center mt-2">
+                  Already have an account? <Link to="/proflogin">Log in</Link>
+                </div>
+
                     </div>
                 </div>
             </form>

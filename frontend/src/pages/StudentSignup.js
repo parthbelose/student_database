@@ -1,35 +1,7 @@
 import React, { useEffect } from 'react';
 import './styles.css'; // Import your CSS file
-
+import { Link , useNavigate } from 'react-router-dom';
 function StudentSignup() {
-    // useEffect(() => {
-    //     const submit = document.getElementById('submit');
-    //     submit.addEventListener("click", function (event) {
-    //         event.preventDefault()
-    //         const auth = getAuth();
-
-    //         //inputs
-    //         const email = document.getElementById('email').value;
-    //         const password = document.getElementById('password').value;
-
-    //         createUserWithEmailAndPassword(auth, email, password)
-    //             .then((userCredential) => {
-    //                 // Signed up 
-    //                 const user = userCredential.user;
-    //                 alert("Account Created")
-    //                 window.location.href = "StudentLogin.html";
-    //                 // ...
-    //             })
-
-    //             .catch((error) => {
-    //                 const errorCode = error.code;
-    //                 const errorMessage = error.message;
-    //                 alert(errorMessage)
-    //                 // ..
-    //             });
-    //     });
-    // }, []);
-
     return (
         <div>
             <div className="background">
@@ -53,9 +25,10 @@ function StudentSignup() {
                     <button id="submit" className="input-box" type="submit">Create Account</button><br /><br />
 
                     <div className="form">
-                        <p>Have an account?
-                            <span><a className="glow-text" href="StudentLogin.html">Login here</a></span>
-                        </p>
+                    <div className="w-100 text-center mt-2">
+                  Already have an account? <Link to="/studentlogin">Log in</Link>
+                </div>
+
                     </div>
                 </div>
             </form>
