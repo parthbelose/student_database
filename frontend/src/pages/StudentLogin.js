@@ -24,8 +24,12 @@ function StudentLogin() {
             
             if (response.data.success) {
                 console.log('Login successful');
-                // Dispatch loginSuccess action with user info
-                dispatch(loginSuccess(response.data.user));
+                const { user } = response.data; 
+                dispatch(loginSuccess(user));
+                console.log(response.data);
+                localStorage.setItem("userId", user.email); 
+                localStorage.setItem("role", user.role); 
+                localStorage.setItem("id", user.id); 
                 navigate('/');
             } else {
                 alert('Login failed: ' + response.data.message);

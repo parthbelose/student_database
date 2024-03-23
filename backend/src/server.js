@@ -23,6 +23,7 @@ app.use(reviewRouter)
 app.use(signupRouter)
 app.use(loginRouter)
 app.use(updateApprovalStatusRouter)
-app.use(registerStudentRouter)
+// app.use(registerStudentRouter)
+app.use("/", registerStudentRouter);
 
 app.listen(3001, () => console.log("Server started"));

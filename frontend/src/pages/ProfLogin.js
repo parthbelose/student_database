@@ -24,10 +24,11 @@ function ProfLogin() {
             
             if (response.data.success) {
                 console.log('Login successful');
-                const { user, role } = response.data; // Assuming the role is available in response.data
+                const { user } = response.data; 
                 dispatch(loginSuccess(user));
-                localStorage.setItem("userId", user.email); // Assuming user.email contains the email
-                localStorage.setItem("role", role); 
+                localStorage.setItem("userId", user.email); 
+                localStorage.setItem("role", user.role); 
+                localStorage.setItem("id", user._id); 
                 navigate('/');
             } else {
                 alert('Login failed: ' + response.data.message);

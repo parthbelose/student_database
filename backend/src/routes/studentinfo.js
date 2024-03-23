@@ -1,5 +1,6 @@
 import express from "express";
 import { Student } from "../models/student.js";
+import { user } from "../models/user.js";
 
 const router = express.Router();
 
@@ -9,7 +10,7 @@ router.put("/students/:id/update", async (req, res) => {
   
     try {
       // Find the student by ID
-      const student = await Student.findById(id);
+      const student = await user.findById(id);
   
       if (!student) {
         return res.status(404).json({ message: "Student not found" });
@@ -26,6 +27,6 @@ router.put("/students/:id/update", async (req, res) => {
       console.error(error);
       res.status(500).json({ message: "Error updating student information", error: error.message });
     }
-  });
+});
 
 export { router as registerStudentRouter };

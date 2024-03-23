@@ -2,6 +2,7 @@ import express from "express";
 const router = express.Router();
 import { user } from "../models/user.js";
 import { Teacher } from "../models/teacher.js";
+import { Student } from "../models/student.js";
 import bcrypt from 'bcrypt';
 
 router.post("/signup", async (req, res) => {
@@ -29,6 +30,12 @@ router.post("/signup", async (req, res) => {
                 user: newUser._id,
             });
             await newTeacher.save();
+        }
+        if (role === 'student') {
+            const newStudent = new Student({
+                user: newUser._id,
+            });
+            await newStudent.save();
         }
         res.status(201).json({ 
             success: true,

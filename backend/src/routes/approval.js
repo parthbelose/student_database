@@ -4,13 +4,13 @@ import { Student } from "../models/student.js";
 const router = express.Router();
 
 // Endpoint for the teacher to update the approval status
-router.put("/students/:id/approval", async (req, res) => {
-  const { id } = req.params;
+router.put("/students/:email/approval", async (req, res) => {
+  const { email } = req.params;
   const { approvalStatus } = req.body;
 
   try {
     // Find the student by ID
-    const student = await Student.findById(id);
+    const student = await Student.findOne({ email });
 
     if (!student) {
       return res.status(404).json({ message: "Student not found" });
