@@ -88,17 +88,17 @@ const applyTeacherController = async (req, res) => {
       const newTeacher = await Teacher({ ...req.body, status: "pending" });
       await newTeacher.save();
       const adminUser = await user.findOne({ isAdmin: true });
-      const notifcation = adminUser.notifcation;
-      notifcation.push({
+      let notification = adminUser.notification || [];
+      notification.push({
         type: "apply-teacher-request",
         message: `${newTeacher.firstName} ${newTeacher.lastName} Has Applied For A Teacher Account`,
         data: {
-          doctorId: newTeacher._id,
+          TeacherId: newTeacher._id,
           name: newTeacher.firstName + " " + newTeacher.lastName,
           onClickPath: "/admin/teachers",
         },
       });
-      await user.findByIdAndUpdate(adminUser._id, { notifcation });
+      await user.findByIdAndUpdate(adminUser._id, { notification });
       res.status(201).send({
         success: true,
         message: "Teacher Account Applied Successfully",
@@ -108,9 +108,33 @@ const applyTeacherController = async (req, res) => {
       res.status(500).send({
         success: false,
         error,
-        message: "Error WHile Applying For Doctotr",
+        message: "Error WHile Applying For Teacher",
       });
     }
   };
 
-export { loginController, registerController, authController, applyTeacherController };
+const getAllNotificationController = async (req, res) => {
+  try {
+    const cuser = await user.findOne({ _id: req.body.userId });
+    const seennotification = cuser.seen_notification;
+    const notification = cuser.notification;
+    seennotification.push(...notification);
+    cuser.notification = [];
+    cuser.seen_notification = notification;
+    const updatedUser = await cuser.save();
+    res.status(200).send({
+      success: true,
+      message: "all notification marked as read",
+      data: updatedUser,
+    });
+  } catch (error) {
+    console.log(error);
+    res.status(500).send({
+      message: "Error in notification",
+      success: false,
+      error,
+    });
+  }
+};
+
+export { loginController, registerController, authController, applyTeacherController, getAllNotificationController };

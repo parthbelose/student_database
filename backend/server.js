@@ -5,7 +5,7 @@ import colors from "colors";
 import morgan from "morgan";
 import dotenv from "dotenv";
 import { router as userRoutes } from "./routes/userRoutes.js";
-// import { reviewRouter } from "./routes/review.js";
+import { router as adminRoutes } from "./routes/adminRoutes.js";
 import {connectDB} from "./config/db.js";
 
 //dotenv conig
@@ -23,12 +23,7 @@ app.use(morgan("dev"));
 
 //routes
 app.use("/api/v1/user", userRoutes);
-// app.use(reviewRouter)
-// app.use(signupRouter)
-// app.use(loginRouter)
-// app.use(updateApprovalStatusRouter)
-// app.use(registerStudentRouter)
-// app.use("/", registerStudentRouter);
+app.use("/api/v1/admin", adminRoutes);
 
 
 //port
