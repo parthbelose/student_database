@@ -85,9 +85,22 @@ const authController = async (req, res) => {
 
 const applyTeacherController = async (req, res) => {
     try {
-      const newTeacher = await Teacher({ ...req.body, status: "pending" });
-      await newTeacher.save();
+      //const newTeacher = await Teacher({ ...req.body, status: "pending" });
+      //await newTeacher.save();
+      const newTeacherData = { ...req.body, status: "pending" };
+      const newTeacher = await Teacher.create(newTeacherData); 
+
+      const userId = req.body.userId; 
+      const users = await user.findById(userId);
+      if (!users) {
+        return res.status(404).json({ success: false, message: "User not found" });
+      }
+  
+      users.isTeacher = true;
+      await users.save();
+
       const adminUser = await user.findOne({ isAdmin: true });
+
       let notification = adminUser.notification || [];
       notification.push({
         type: "apply-teacher-request",
@@ -112,6 +125,47 @@ const applyTeacherController = async (req, res) => {
       });
     }
   };
+
+// const applyStudentController = async (req, res) => {
+//     try {
+//       const newStudentData = { ...req.body, status: "pending" };
+//       const newTeacher = await Teacher.create(newTeacherData); 
+
+//       const userId = req.body.userId; 
+//       const users = await user.findById(userId);
+//       if (!users) {
+//         return res.status(404).json({ success: false, message: "User not found" });
+//       }
+  
+//       users.isTeacher = true;
+//       await users.save();
+
+//       const adminUser = await user.findOne({ isAdmin: true });
+
+//       let notification = adminUser.notification || [];
+//       notification.push({
+//         type: "apply-teacher-request",
+//         message: `${newTeacher.firstName} ${newTeacher.lastName} Has Applied For A Teacher Account`,
+//         data: {
+//           TeacherId: newTeacher._id,
+//           name: newTeacher.firstName + " " + newTeacher.lastName,
+//           onClickPath: "/admin/teachers",
+//         },
+//       });
+//       await user.findByIdAndUpdate(adminUser._id, { notification });
+//       res.status(201).send({
+//         success: true,
+//         message: "Teacher Account Applied Successfully",
+//       });
+//     } catch (error) {
+//       console.log(error);
+//       res.status(500).send({
+//         success: false,
+//         error,
+//         message: "Error WHile Applying For Teacher",
+//       });
+//     }
+//   };
 
 const getAllNotificationController = async (req, res) => {
   try {

@@ -1,18 +1,36 @@
 import mongoose from "mongoose";
 
 const userSchema = new mongoose.Schema({
-  user: {
-    type: mongoose.Types.ObjectId,
-    ref: "user",
+  userId: {
+    type: String,
   },
-  name: { type: String },
-  regNumber: { type: Number },
-  birthdate: { type: String },
-  address: { type: String },
-  year: { type: Number },
-  gender: { type: String },
-  status: { type: String },
+  firstName: {
+    type: String,
+    required: [true, "first name is required"],
+  },
+  lastName: {
+    type: String,
+    required: [true, "last name is required"],
+  },
+  regNumber: { 
+    type: Number,
+    required: [true, "registration number is required"],
+  },
+  address: {
+     type: String,
+     required: [true, "Address is required"], 
+    },
+  batch: {
+    type: String,
+    required: [true, "Batch is required"], 
+    },
+    status: {
+      type: String,
+      default: "pending",
+    },
   enrolledCourses: [{ type: String  }],
 }, { timestamps: true });
 
 export const Student = mongoose.model('Student', userSchema);
+
+

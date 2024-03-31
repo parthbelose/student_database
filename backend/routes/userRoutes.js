@@ -17,6 +17,10 @@ router.post("/getUserData", authMiddleware, authController);
 //Apply Teacher || POST
 router.post("/apply-teacher", authMiddleware, applyTeacherController);
 
+//Apply Student || POST
+//router.post("/apply-student", authMiddleware, applyStudentController);
+
+
 //Notifiaction Teacher || POST
 router.post("/get-all-notification", authMiddleware, getAllNotificationController );
 
