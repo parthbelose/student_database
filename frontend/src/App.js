@@ -10,6 +10,7 @@ import ApplyTeacher from "./pages/Apply_teacher";
 import NotificationPage from "./pages/NotificationPage";
 import Users from "./pages/admin/Users";
 import Teachers from "./pages/admin/Teachers";
+import Profile from "./pages/teacher/Profile";
 function App() {
   const { loading } = useSelector((state) => state.alerts);
   return (
@@ -48,6 +49,14 @@ function App() {
               element={
                 <ProtectedRoute>
                   < ApplyTeacher/>
+                </ProtectedRoute>
+              }
+            />
+            <Route
+              path="/teacher/profile/:id"
+              element={
+                <ProtectedRoute>
+                  < Profile/>
                 </ProtectedRoute>
               }
             />

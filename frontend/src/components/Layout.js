@@ -14,8 +14,27 @@ const Layout = ({ children }) => {
     message.success("Logout Successfully");
     navigate("/login");
   };
+ // =========== teacher menu ===============
+ const teacherMenu = [
+  {
+    name: "Home",
+    path: "/",
+    icon: "fa-solid fa-house",
+  },
+  {
+    name: "Appointments",
+    path: "/appointments",
+    icon: "fa-solid fa-list",
+  },
+  {
+    name: "Profile",
+    path: `/teacher/profile/${user?._id}`,
+    icon: "fa-solid fa-user",
+  },
+];
+// =========== teacher menu ===============
 
-  const SidebarMenu = user?.isAdmin ? adminMenu : userMenu;
+  const SidebarMenu = user?.isAdmin ? adminMenu  : user?.isTeacher ? teacherMenu: userMenu;
   return (
     <>
       <div className="main">
