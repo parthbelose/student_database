@@ -29,7 +29,7 @@ app.use("/api/v1/teacher", teacherRoutes);
 
 
 //port
-const port = process.env.PORT || 3001;
+const port = process.env.PORT || 3000;
 //listen port
 app.listen(port, () => {
   console.log(
