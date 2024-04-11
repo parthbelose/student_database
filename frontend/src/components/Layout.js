@@ -22,9 +22,14 @@ const Layout = ({ children }) => {
     icon: "fa-solid fa-house",
   },
   {
-    name: "Appointments",
-    path: "/appointments",
+    name: "Student Courses",
+    path: "fa-solid fa-list-check",
     icon: "fa-solid fa-list",
+  },
+  {
+    name: "Students",
+    path: "/teacher/students",
+    icon: "fa-solid fa-graduation-cap",
   },
   {
     name: "Profile",
@@ -41,7 +46,7 @@ const Layout = ({ children }) => {
         <div className="layout">
           <div className="sidebar">
             <div className="logo">
-              <h6>DOC APP</h6>
+              <h6>PORTAL</h6>
               <hr />
             </div>
             <div className="menu">
