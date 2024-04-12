@@ -7,6 +7,7 @@ import dotenv from "dotenv";
 import { router as userRoutes } from "./routes/userRoutes.js";
 import { router as adminRoutes } from "./routes/adminRoutes.js";
 import { router as teacherRoutes } from "./routes/teacherRoutes.js";
+import { router as studentRoutes } from "./routes/studentRoutes.js";
 import {connectDB} from "./config/db.js";
 
 //dotenv conig
@@ -26,7 +27,7 @@ app.use(morgan("dev"));
 app.use("/api/v1/user", userRoutes);
 app.use("/api/v1/admin", adminRoutes);
 app.use("/api/v1/teacher", teacherRoutes);
-
+app.use("/api/v1/student", studentRoutes);
 
 //port
 const port = process.env.PORT || 3000;

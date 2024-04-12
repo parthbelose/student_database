@@ -1,5 +1,5 @@
 import express from "express";
-import { loginController, registerController, authController, applyTeacherController, getAllNotificationController, deleteAllNotificationController } from "../controllers/userCtrl.js";
+import { loginController, registerController, authController, applyTeacherController, getAllNotificationController, deleteAllNotificationController,applyStudentController } from "../controllers/userCtrl.js";
 import { authMiddleware } from "../middlewares/authMiddleware.js";
 
 const router = express.Router();
@@ -18,7 +18,7 @@ router.post("/getUserData", authMiddleware, authController);
 router.post("/apply-teacher", authMiddleware, applyTeacherController);
 
 //Apply Student || POST
-//router.post("/apply-student", authMiddleware, applyStudentController);
+router.post("/apply-student", authMiddleware, applyStudentController);
 
 //Notifiaction Teacher || POST
 router.post("/get-all-notification", authMiddleware, getAllNotificationController );

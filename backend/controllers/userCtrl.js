@@ -3,6 +3,7 @@ import bcrypt  from 'bcrypt';
 import  jwt from 'jsonwebtoken' ;
 import { user } from "../models/user.js";
 import { Teacher } from "../models/teacher.js";
+import { Student } from "../models/student.js";
 
 const loginController = async (req, res) => {
     try {
@@ -85,8 +86,6 @@ const authController = async (req, res) => {
 
 const applyTeacherController = async (req, res) => {
     try {
-      //const newTeacher = await Teacher({ ...req.body, status: "pending" });
-      //await newTeacher.save();
       const newTeacherData = { ...req.body, status: "pending" };
       const newTeacher = await Teacher.create(newTeacherData); 
 
@@ -126,46 +125,45 @@ const applyTeacherController = async (req, res) => {
     }
   };
 
-// const applyStudentController = async (req, res) => {
-//     try {
-//       const newStudentData = { ...req.body, status: "pending" };
-//       const newTeacher = await Teacher.create(newTeacherData); 
+const applyStudentController = async (req, res) => {
+    try {
+      const newStudentData = { ...req.body, status: "pending" };
+      const newStudent = await Student.create(newStudentData); 
 
-//       const userId = req.body.userId; 
-//       const users = await user.findById(userId);
-//       if (!users) {
-//         return res.status(404).json({ success: false, message: "User not found" });
-//       }
-  
-//       users.isTeacher = true;
-//       await users.save();
+      const userId = req.body.userId; 
+      const users = await user.findById(userId);
+      if (!users) {
+        return res.status(404).json({ success: false, message: "User not found" });
+      }
+      users.isStudent = true;
+      await users.save();
 
-//       const adminUser = await user.findOne({ isAdmin: true });
+      const adminUser = await user.findOne({ isAdmin: true });
 
-//       let notification = adminUser.notification || [];
-//       notification.push({
-//         type: "apply-teacher-request",
-//         message: `${newTeacher.firstName} ${newTeacher.lastName} Has Applied For A Teacher Account`,
-//         data: {
-//           TeacherId: newTeacher._id,
-//           name: newTeacher.firstName + " " + newTeacher.lastName,
-//           onClickPath: "/admin/teachers",
-//         },
-//       });
-//       await user.findByIdAndUpdate(adminUser._id, { notification });
-//       res.status(201).send({
-//         success: true,
-//         message: "Teacher Account Applied Successfully",
-//       });
-//     } catch (error) {
-//       console.log(error);
-//       res.status(500).send({
-//         success: false,
-//         error,
-//         message: "Error WHile Applying For Teacher",
-//       });
-//     }
-//   };
+      let notification = adminUser.notification || [];
+      notification.push({
+        type: "apply-student-request",
+        message: `${newStudent.firstName} ${newStudent.lastName} Has Applied For A Student Account`,
+        data: {
+          TeacherId: newStudent._id,
+          name: newStudent.firstName + " " + newStudent.lastName,
+          onClickPath: "/teacher/students",
+        },
+      });
+      await user.findByIdAndUpdate(adminUser._id, { notification });
+      res.status(201).send({
+        success: true,
+        message: " Account Applied Successfully",
+      });
+    } catch (error) {
+      console.log(error);
+      res.status(500).send({
+        success: false,
+        error,
+        message: "Error WHile Applying For Student",
+      });
+    }
+  };
 
 const getAllNotificationController = async (req, res) => {
   try {
@@ -191,7 +189,6 @@ const getAllNotificationController = async (req, res) => {
   }
 };
 
-// delete notifications
 const deleteAllNotificationController = async (req, res) => {
   try {
     const users = await user.findOne({ _id: req.body.userId });
@@ -214,4 +211,4 @@ const deleteAllNotificationController = async (req, res) => {
   }
 };
 
-export { loginController, registerController, authController, applyTeacherController, getAllNotificationController, deleteAllNotificationController };
+export { loginController, registerController, authController,applyStudentController, applyTeacherController, getAllNotificationController, deleteAllNotificationController };

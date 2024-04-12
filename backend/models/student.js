@@ -1,4 +1,5 @@
 import mongoose from "mongoose";
+import {Course} from "./course.js";
 
 const userSchema = new mongoose.Schema({
   userId: {
@@ -28,7 +29,10 @@ const userSchema = new mongoose.Schema({
       type: String,
       default: "pending",
     },
-  enrolledCourses: [{ type: String  }],
+    enrolledCourses: [{
+      type: mongoose.Schema.Types.ObjectId,
+      ref: 'Course'
+    }],
 }, { timestamps: true });
 
 export const Student = mongoose.model('Student', userSchema);

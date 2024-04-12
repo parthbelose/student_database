@@ -21,6 +21,10 @@ const userSchema = new mongoose.Schema({
     type: Boolean,
     default: false,
   },
+  isStudent: {
+    type: Boolean,
+    default: false,
+  },
   notification: {
     type: Array,
     default: [],

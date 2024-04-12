@@ -27,8 +27,7 @@ const Teachers = () => {
       try {
         const res = await axios.post(
           "/api/v1/admin/changeAccountStatus",
-          { teacherId: record._id, 
-            //userId: record.userId, 
+          { teacherId: record._id,  
             status: status },
           {
             headers: {
