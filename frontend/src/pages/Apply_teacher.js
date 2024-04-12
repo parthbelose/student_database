@@ -49,7 +49,7 @@ const ApplyTeacher = () => {
               required
               rules={[{ required: true }]}
             >
-              <Input type="text" placeholder="your first name" />
+              <Input type="text" placeholder="Your first name" />
             </Form.Item>
           </Col>
           <Col xs={24} md={24} lg={8}>
@@ -59,7 +59,7 @@ const ApplyTeacher = () => {
               required
               rules={[{ required: true }]}
             >
-              <Input type="text" placeholder="your last name" />
+              <Input type="text" placeholder="Your last name" />
             </Form.Item>
           </Col>
           <Col xs={24} md={24} lg={8}>
@@ -69,7 +69,7 @@ const ApplyTeacher = () => {
               required
               rules={[{ required: true }]}
             >
-              <Input type="text" placeholder="your contact no" />
+              <Input type="text" placeholder="Your contact no" />
             </Form.Item>
           </Col>
           <Col xs={24} md={24} lg={8}>
@@ -79,7 +79,7 @@ const ApplyTeacher = () => {
               required
               rules={[{ required: true }]}
             >
-              <Input type="email" placeholder="your email address" />
+              <Input type="email" placeholder="Your email address" />
             </Form.Item>
           </Col>
         </Row>
@@ -92,7 +92,7 @@ const ApplyTeacher = () => {
               required
               rules={[{ required: true }]}
             >
-              <Input type="text" placeholder="your specialization" />
+              <Input type="text" placeholder="Your specialization" />
             </Form.Item>
           </Col>
           <Col xs={24} md={24} lg={8}>
@@ -102,7 +102,7 @@ const ApplyTeacher = () => {
               required
               rules={[{ required: true }]}
             >
-              <Input type="text" placeholder="your experience" />
+              <Input type="text" placeholder="Your experience" />
             </Form.Item>
           </Col>
           <Col xs={24} md={24} lg={8}></Col>
