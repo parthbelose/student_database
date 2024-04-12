@@ -4,23 +4,22 @@ import { Student } from "../models/student.js";
 
 const updateEnrolledCourses = async (req, res) => {
   try {
-    const { studentId, ...courseData } = req.body;
-
+    // console.log(req.body);
+    const { studentId, courseData,userId} = req.body;
+    
     const student = await Student.findById(studentId);
 
     if (!student) {
       return res.status(404).send({ success: false, message: 'Student not found' });
     }
-
-    // Find the course document based on course name only
+    // console.log(courseData)
     const course = await Course.findOne({ course_name: courseData.course_name });
 
     if (!course) {
       return res.status(400).send({ success: false, message: 'Course not found' });
     }
 
-    student.enrolledCourses.push(course._id); // Push the course ID
-
+    student.enrolledCourses.push(course._id); 
     await student.save();
 
     res.status(201).send({ success: true, message: 'Enrolled courses updated successfully', data: courseData });
@@ -29,7 +28,5 @@ const updateEnrolledCourses = async (req, res) => {
     res.status(500).send({ success: false, message: 'Internal server error' });
   }
 };
-
- 
 
 export { updateEnrolledCourses };
