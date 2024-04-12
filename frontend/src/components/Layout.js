@@ -4,15 +4,19 @@ import { adminMenu, userMenu } from "./../Data/data";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import { useSelector } from "react-redux";
 import { message,Badge } from "antd";
+import { logout } from "../redux/features/userSlice";
+import { useDispatch } from "react-redux";
 const Layout = ({ children }) => {
   const { user } = useSelector((state) => state.user);
   const location = useLocation();
   const navigate = useNavigate();
+  const dispatch = useDispatch();
   // logout funtion
   const handleLogout = () => {
-    localStorage.clear();
-    message.success("Logout Successfully");
-    navigate("/login");
+    dispatch(logout()); // Dispatch the logout action
+  localStorage.clear();
+  message.success("Logout Successfully");
+  navigate("/login");
   };
  // =========== teacher menu ===============
  const teacherMenu = [
