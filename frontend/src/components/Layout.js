@@ -1,6 +1,6 @@
 import React from "react";
 import "../styles/LayoutStyles.css";
-import { adminMenu, userMenu } from "./../Data/data";
+import { adminMenu, studentMenu, userMenu } from "./../Data/data";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import { useSelector } from "react-redux";
 import { message,Badge } from "antd";
@@ -27,7 +27,7 @@ const Layout = ({ children }) => {
   },
   {
     name: "Student Courses",
-    path: "fa-solid fa-list-check",
+    path: "/teacher/courses",
     icon: "fa-solid fa-list",
   },
   {
@@ -43,7 +43,7 @@ const Layout = ({ children }) => {
 ];
 // =========== teacher menu ===============
 
-  const SidebarMenu = user?.isAdmin ? adminMenu  : user?.isTeacher ? teacherMenu: userMenu;
+  const SidebarMenu = user?.isAdmin ? adminMenu  : user?.isTeacher ? teacherMenu: user?.isStudent ? studentMenu : userMenu;
   return (
     <>
       <div className="main">

@@ -2,6 +2,9 @@ import React, { useState } from 'react';
 import coursesData from './course_select.json';
 import './course_select.css'; 
 import img1 from '../img/home.png';
+
+///getAllCourses
+
 function CourseSelectionForm() {
   const [selectedCourses, setSelectedCourses] = useState([]);
   const handleCourseSelect = (course) => {

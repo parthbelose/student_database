@@ -48,7 +48,7 @@ export const studentMenu = [
   },
   {
     name: "Generate Hall ticket",
-    path: "/hall-ticket",
+    path: "/student/hall-ticket",
     icon: "fa-solid fa-print",
   },
   {

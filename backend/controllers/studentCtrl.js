@@ -2,17 +2,35 @@ import express from "express";
 import { Course } from "../models/course.js"; 
 import { Student } from "../models/student.js";
 
+const getStudentInfoController = async (req, res) => {
+  try {
+    const student = await Student.findOne({ userId: req.body.userId });
+    res.status(200).send({
+      success: true,
+      message: "student data fetch success",
+      data: student,
+    });
+  } catch (error) {
+    console.log(error);
+    res.status(500).send({
+      success: false,
+      error,
+      message: "Error in Fetching Student Details",
+    });
+  }
+};
+
 const updateEnrolledCourses = async (req, res) => {
   try {
     // console.log(req.body);
-    const { studentId, courseData,userId} = req.body;
+    const { studentId, courseData, userId} = req.body;
     
     const student = await Student.findById(studentId);
 
     if (!student) {
       return res.status(404).send({ success: false, message: 'Student not found' });
     }
-    // console.log(courseData)
+
     const course = await Course.findOne({ course_name: courseData.course_name });
 
     if (!course) {
@@ -29,4 +47,4 @@ const updateEnrolledCourses = async (req, res) => {
   }
 };
 
-export { updateEnrolledCourses };
+export { updateEnrolledCourses, getStudentInfoController };

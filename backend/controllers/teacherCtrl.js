@@ -43,12 +43,49 @@ const updateProfileController = async (req, res) => {
 
 const CourseSelection = async (req, res) => {
   const newCourseData = { ...req.body };
+  console.log(newCourseData);
   try {
     const newCourse = await Course.create(newCourseData);
     res.status(201).json({ success: true, message: 'Course created successfully', data: newCourse });
   } catch (error) {
     console.error(error);
     res.status(500).json({ message: 'Internal server error' });
+  }
+};
+
+const getAllCoursesController = async (req, res) => {
+  try {
+    const students = await Course.find({});
+    res.status(200).send({
+      success: true,
+      message: "Courses Data list",
+      data: students,
+    });
+  } catch (error) {
+    console.log(error);
+    res.status(500).send({
+      success: false,
+      message: "error while getting teachers data",
+      error,
+    });
+  }
+};
+
+const getAllStudentsController = async (req, res) => {
+  try {
+    const students = await Student.find({});
+    res.status(200).send({
+      success: true,
+      message: "Students Data list",
+      data: students,
+    });
+  } catch (error) {
+    console.log(error);
+    res.status(500).send({
+      success: false,
+      message: "error while getting teachers data",
+      error,
+    });
   }
 };
 
@@ -82,4 +119,5 @@ const changeAccountStudentController = async (req, res) => {
   }
 };
 
-export { getTeacherInfoController, updateProfileController, CourseSelection, changeAccountStudentController };
+export { getTeacherInfoController, updateProfileController, CourseSelection, 
+  changeAccountStudentController, getAllStudentsController, getAllCoursesController };

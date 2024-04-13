@@ -1,28 +1,25 @@
-import express from "express";
-import { Course } from "../models/course.js"; // Import the Course model
-
+const express = require('express');
 const router = express.Router();
+const Course = require('../models/Course'); 
 
-router.post("/courses", async (req, res) => {
-  const { name, description, teacher } = req.body;
-
-  try {
-    // Create a new course instance
-    const newCourse = new Course({
-      name,
-      description,
-      teacher,
-    });
-
-    // Save the course to the database
-    await newCourse.save();
-
-    // Send a success response
-    res.status(201).json({ success: true, message: 'Course created successfully' });
-  } catch (error) {
-    console.error(error);
-    res.status(500).json({ message: 'Internal server error' });
-  }
+// Route to get course details by ID
+router.get('/:id', async (req, res) => {
+    try {
+        const courseId = req.params.id;
+        // Fetch course details by ID from the database
+        const course = await Course.findById(courseId);
+        
+        // Check if the course exists
+        if (!course) {
+            return res.status(404).json({ success: false, message: 'Course not found' });
+        }
+        
+        // If the course exists, return it
+        return res.status(200).json({ success: true, data: course });
+    } catch (error) {
+        console.error(error);
+        return res.status(500).json({ success: false, message: 'Internal server error' });
+    }
 });
 
-export { router as coursesRouter };
+module.exports = router;
