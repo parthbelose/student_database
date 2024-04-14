@@ -1,6 +1,6 @@
 const express = require('express');
 const router = express.Router();
-const Course = require('../models/Course'); 
+const Course = require('../models/course'); 
 
 // Route to get course details by ID
 router.get('/:id', async (req, res) => {

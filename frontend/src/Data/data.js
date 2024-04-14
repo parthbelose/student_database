@@ -53,7 +53,7 @@ export const studentMenu = [
   },
   {
     name: "Register Courses",
-    path: "/register-courses",
+    path: "/student/register-courses",
     icon: "fa-solid fa-list-ul",
   },
   {

@@ -22,10 +22,10 @@ const getStudentInfoController = async (req, res) => {
 
 const updateEnrolledCourses = async (req, res) => {
   try {
-    // console.log(req.body);
-    const { studentId, courseData, userId} = req.body;
+    console.log(req.body);
+    const { userId, courseData} = req.body;
     
-    const student = await Student.findById(studentId);
+    const student = await Student.findOne({userId:userId});
 
     if (!student) {
       return res.status(404).send({ success: false, message: 'Student not found' });

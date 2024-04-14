@@ -1,52 +1,125 @@
-import React, { useState } from 'react';
-import coursesData from './course_select.json';
-import './course_select.css'; 
-import img1 from '../img/home.png';
+import React, { useState, useEffect } from "react";
+import Layout from "./../../components/Layout";
+import axios from "axios";
+import { Table, Button, message } from "antd";
+import { useNavigate, Link } from "react-router-dom";
 
-///getAllCourses
+const Courses = () => {
+    const [courses, setCourses] = useState([]);
+    const [student, setStudent] = useState(null);
+    const navigate = useNavigate();
+    const userId = localStorage.getItem("userId");  // Ensure you have the userId stored or fetched appropriately
 
-function CourseSelectionForm() {
-  const [selectedCourses, setSelectedCourses] = useState([]);
-  const handleCourseSelect = (course) => {
-    if (selectedCourses.includes(course)) {
-      setSelectedCourses(selectedCourses.filter(selectedCourse => selectedCourse !== course));
-    } else {
-      setSelectedCourses([...selectedCourses, course]);
-    }
+    const getCourses = async () => {
+        try {
+            const res = await axios.get("/api/v1/teacher/getAllCourses", {
+                headers: {
+                    Authorization: `Bearer ${localStorage.getItem("token")}`,
+                },
+            });
+            if (res.data.success) {
+                setCourses(res.data.data);
+            }
+        } catch (error) {
+            console.error(error);
+        }
+    };
+
+    const getStudentInfo = async () => {
+        try {
+            const res = await axios.post(
+                "/api/v1/student/getStudentInfo",
+                { userId: userId },
+                {
+                    headers: {
+                        Authorization: `Bearer ${localStorage.getItem("token")}`,
+                    },
+                }
+            );
+            if (res.data.success) {
+                setStudent(res.data.data);
+            }
+        } catch (error) {
+            console.error(error);
+        }
+    };
+
+    useEffect(() => {
+        getStudentInfo();
+        getCourses();
+    }, []);
+
+    const enrollInCourse = async (courseId) => {
+      if (!student) {
+          message.error("Student details not found!");
+          return;
+      }
+  
+      try {
+          const res = await axios.post(
+              "/api/v1/student/student-courses",
+              {
+                  userId: student.userId,
+                  courseData: { course_name: courseId }
+              },
+              {
+                  headers: {
+                      Authorization: `Bearer ${localStorage.getItem("token")}`,
+                  },
+              }
+          );
+          if (res.data.success) {
+              message.success("Enrolled in course successfully!");
+              getStudentInfo();  // Refresh student info and enrolled courses
+          } else {
+              message.error(res.data.message || "Failed to enroll in course");
+          }
+      } catch (error) {
+          console.error(error);
+          message.error("Failed to enroll in course");
+      }
   };
-  const handleSubmit = (event) => {
-    event.preventDefault();
-    console.log("Selected Courses:", selectedCourses);
-    alert("Form submitted successfully!");
-  };
+  
 
-  return (<div className="course_select_list" style={{backgroundImage:`url(${img1})`,display:'flex',justifyContent:'center',alignItems:'center',minHeight:'100vh'}}>
-    <div className="course-selection-container " style={{backgroundImage:"linear-gradient(to right,#E3FDFD,#CBF1F5,#A6E3E9,#71C9CE)",justifyContent:'center',alignItems:'center'}}>
-      <h2>Course Selection</h2>
-      <form onSubmit={handleSubmit}>
-        {coursesData.map(course => (
-          <div key={course.id}>
-            <input
-              type="checkbox"
-              id={course.id} class="check"
-              checked={selectedCourses.includes(course)}
-              onChange={() => handleCourseSelect(course)}
-            />
-            <label htmlFor={course.id}>{course.name}</label>
-          </div>
-        ))}
-        <button type="submit" className="submit-button">Submit</button>
-      </form>
-      <div className="selected-courses-container">
-        <h3>Selected Courses:</h3>
-        <ul>
-          {selectedCourses.map(selectedCourse => (
-            <li key={selectedCourse.id}>{selectedCourse.name}</li>
-          ))}
-        </ul>
-      </div>
-    </div></div>
-  );
-}
+    const isEnrolled = (courseId) => {
+        return student?.enrolledCourses?.includes(courseId);
+    };
 
-export default CourseSelectionForm;
+    const columns = [
+        {
+            title: "Course",
+            dataIndex: "course_name",
+        },
+        {
+            title: "Semester",
+            dataIndex: "semester",
+        },
+        {
+            title: "Year",
+            dataIndex: "year",
+        },
+        {
+            title: "Faculty",
+            dataIndex: "faculty",
+        },
+        {
+            title: "Action",
+            key: "action",
+            render: (text, record) => (
+                <Button type="primary" onClick={() => enrollInCourse(record.id)} disabled={isEnrolled(record.id)}>
+                    {isEnrolled(record.id) ? "Enrolled" : "Enroll"}
+                </Button>
+            ),
+        },
+    ];
+
+    return (
+        <Layout>
+            <h1 className="text-center m-3">COURSES</h1>
+            <Table columns={columns} dataSource={courses} rowKey="id" />
+            {/* <Link to="/teacher/add-courses">ADD COURSES</Link> */}
+        </Layout>
+    );
+};
+
+export default Courses;

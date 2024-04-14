@@ -1,6 +1,6 @@
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import HomePage from "./pages/HomePage";
-import Login from "./pages/Login";
+import Login from "./pages/login";
 import Register from "./pages/Register";
 import { useSelector } from "react-redux";
 import Spinner from "./components/Spinner";
@@ -16,6 +16,7 @@ import Students from "./pages/teacher/Students";
 import Courses from "./pages/teacher/courses";
 import AddCourse from "./pages/teacher/add-course";
 import HallTicketGenerator from "./pages/student/generate_pdf";
+import CourseSelectionForm from "./pages/student/course_select";
 function App() {
   const { loading } = useSelector((state) => state.alerts);
   return (
@@ -102,6 +103,14 @@ function App() {
               element={
                 <ProtectedRoute>
                   < HallTicketGenerator/>
+                </ProtectedRoute>
+              }
+            />
+            <Route
+              path="/student/register-courses"
+              element={
+                <ProtectedRoute>
+                  < CourseSelectionForm/>
                 </ProtectedRoute>
               }
             />
