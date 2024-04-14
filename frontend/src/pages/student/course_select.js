@@ -49,77 +49,81 @@ const Courses = () => {
         getCourses();
     }, []);
 
-    const enrollInCourse = async (courseId) => {
-      if (!student) {
-          message.error("Student details not found!");
-          return;
-      }
-  
-      try {
-          const res = await axios.post(
-              "/api/v1/student/student-courses",
-              {
-                  userId: student.userId,
-                  courseData: { course_name: courseId }
-              },
-              {
-                  headers: {
-                      Authorization: `Bearer ${localStorage.getItem("token")}`,
-                  },
-              }
-          );
-          if (res.data.success) {
-              message.success("Enrolled in course successfully!");
-              getStudentInfo();  // Refresh student info and enrolled courses
-          } else {
-              message.error(res.data.message || "Failed to enroll in course");
-          }
-      } catch (error) {
-          console.error(error);
-          message.error("Failed to enroll in course");
-      }
-  };
-  
-
-    const isEnrolled = (courseId) => {
-        return student?.enrolledCourses?.includes(courseId);
+    const enrollInCourse = async (record) => { // Pass the entire record object
+        if (!student) {
+            message.error("Student details not found!");
+            return;
+        }
+    
+        try {
+            const res = await axios.post(
+                "/api/v1/student/student-courses",
+                {
+                    userId: student.userId,
+                    courseData: {
+                        course_name: record.course_name,
+                        semester: record.semester,
+                        year: record.year,
+                        faculty: record.faculty
+                    }
+                },
+                {
+                    headers: {
+                        Authorization: `Bearer ${localStorage.getItem("token")}`,
+                    },
+                }
+            );
+            if (res.data.success) {
+                message.success("Enrolled in course successfully!");
+                getStudentInfo();  // Refresh student info and enrolled courses
+            } else {
+                message.error(res.data.message || "Failed to enroll in course");
+            }
+        } catch (error) {
+            console.error(error);
+            message.error("Failed to enroll in course");
+        }
     };
-
-    const columns = [
-        {
-            title: "Course",
-            dataIndex: "course_name",
-        },
-        {
-            title: "Semester",
-            dataIndex: "semester",
-        },
-        {
-            title: "Year",
-            dataIndex: "year",
-        },
-        {
-            title: "Faculty",
-            dataIndex: "faculty",
-        },
-        {
+    
+  
+      const isEnrolled = (courseId) => {
+          return student?.enrolledCourses?.includes(courseId);
+      };
+  
+      const columns = [
+          {
+              title: "Course",
+              dataIndex: "course_name",
+          },
+          {
+              title: "Semester",
+              dataIndex: "semester",
+          },
+          {
+              title: "Year",
+              dataIndex: "year",
+          },
+          {
+              title: "Faculty",
+              dataIndex: "faculty",
+          },
+          {
             title: "Action",
             key: "action",
             render: (text, record) => (
-                <Button type="primary" onClick={() => enrollInCourse(record.id)} disabled={isEnrolled(record.id)}>
+                <Button type="primary" onClick={() => enrollInCourse(record)} disabled={isEnrolled(record.id)}>
                     {isEnrolled(record.id) ? "Enrolled" : "Enroll"}
                 </Button>
             ),
         },
-    ];
-
-    return (
-        <Layout>
-            <h1 className="text-center m-3">COURSES</h1>
-            <Table columns={columns} dataSource={courses} rowKey="id" />
-            {/* <Link to="/teacher/add-courses">ADD COURSES</Link> */}
-        </Layout>
-    );
-};
+      ];
+  
+      return (
+          <Layout>
+              <h1 className="text-center m-3">COURSES</h1>
+              <Table columns={columns} dataSource={courses} rowKey="id" />
+          </Layout>
+      );
+  };
 
 export default Courses;

@@ -25,7 +25,7 @@ const updateEnrolledCourses = async (req, res) => {
     console.log(req.body);
     const { userId, courseData} = req.body;
     
-    const student = await Student.findOne({userId:userId});
+    const student = await Student.findOne({userId: userId});
 
     if (!student) {
       return res.status(404).send({ success: false, message: 'Student not found' });
