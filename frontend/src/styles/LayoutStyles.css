@@ -59,7 +59,7 @@
 }
 .active a,
 .active i {
-  color: rgb(51, 1, 1);
+  color: #4793AF;
 }
 .header-content {
   display: flex;

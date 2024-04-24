@@ -8,7 +8,7 @@ const Courses = () => {
     const [courses, setCourses] = useState([]);
     const [student, setStudent] = useState(null);
     const navigate = useNavigate();
-    const userId = localStorage.getItem("userId");  // Ensure you have the userId stored or fetched appropriately
+    const userId = localStorage.getItem("userId");  
 
     const getCourses = async () => {
         try {

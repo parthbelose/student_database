@@ -5,7 +5,7 @@ import { Link, useNavigate } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
 import { showLoading, hideLoading } from "../../redux/features/alertSlice";
 import axios from "axios";
-
+import Layout from "../../components/Layout";
 const AddCourse = () => {
   const navigate = useNavigate();
   const { user } = useSelector((state) => state.user);
@@ -38,6 +38,7 @@ const AddCourse = () => {
         }
       };
   return (
+    <Layout>
     <div className="form-container ">
       <Form
         layout="vertical"
@@ -66,6 +67,7 @@ const AddCourse = () => {
         </button>
       </Form>
     </div>
+    </Layout>
   );
 };
 

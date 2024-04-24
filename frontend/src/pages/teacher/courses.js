@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import Layout from "./../../components/Layout";
 import axios from "axios";
-import { Table, message } from "antd";
+import { Button, Table, message } from "antd";
 import { useNavigate, Link } from "react-router-dom";
 
 const Courses = () => {
@@ -54,7 +54,8 @@ const Courses = () => {
       <Layout>
         <h1 className="text-center m-3">COURSES</h1>
         <Table columns={columns} dataSource={doctors} />
-        <Link to="/teacher/add-courses">ADD COURSES</Link>
+        <Button style={{paddingLeft:"20px",textDecoration:"None"}}><Link to="/teacher/add-courses">ADD COURSES</Link></Button>
+        
       </Layout>
     );
 };

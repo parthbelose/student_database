@@ -1,0 +1,163 @@
+
+/* Base reset for margin and padding */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+.container {
+  background: #fff; /* White background */
+  padding: 40px;
+  border-radius: 20px;
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+  display: flex;
+  flex-direction: column;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  background-color: #f9f9f9; /* Light grey background */
+  color: #333;
+  line-height: 1.6;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 0;
+  padding: 20px;
+  background-image: url('../img/5836.jpg');
+  /* background-image: url('img.jpg'); */
+  background-size:750px; /* Cover the entire page */
+  background-position: center;
+}
+
+h1 {
+  text-align: center;
+  color: #333;
+  margin-bottom: 24px;
+  font-size: 2.5rem;
+  width: 100%; /* Ensure h1 spans full width */
+}
+
+.form-section {
+  flex: 1; /* Each section takes up equal space */
+  padding: 0 20px;
+}
+
+.form-group {
+  margin-bottom: 1.5rem;
+}
+
+.form-group label {
+  display: block;
+  margin-bottom: .5rem;
+  color: #555;
+}
+
+input[type="text"],
+input[type="date"],
+input[type="file"],
+button[type="submit"],
+select {
+  width: 100%;
+  padding: 12px;
+  border-radius: 8px;
+  border: none;
+  outline: none;
+  font-size: 1rem;
+  color: #333;
+  background: #f4f4f4;
+}
+
+input[type="text"]:focus,
+input[type="date"]:focus {
+  background: #f4f4f4;
+  color: #333;
+}
+
+button[type="submit"] {
+  cursor: pointer;
+  font-weight: bold;
+  text-transform: uppercase;
+  background: #007bff; /* School blue */
+  color: white;
+  transition: background-color 0.3s;
+}
+
+button[type="submit"]:hover {
+  background: #0056b3; /* Darker blue on hover */
+}
+
+/* Enhancing focus styles */
+input[type="text"]:focus,
+input[type="date"]:focus,
+input[type="file"]:focus {
+  box-shadow: 0 0 0 2px #007bff; /* School blue glow on focus */
+}
+
+/* Adjust margins for visual spacing */
+.form-group + .form-group {
+  margin-top: 1.5rem;
+}
+.container {
+    width: 90%;
+    max-width: 1000px;
+    margin: auto;
+    padding: 20px;
+    background: #fff;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  }
+  
+  h1 {
+    text-align: center;
+    margin-bottom: 20px;
+  }
+  
+  .sections {
+    display: flex;
+    justify-content: space-between;
+  }
+  
+  .form-section {
+    flex: 1;
+    margin: 0 10px;
+  }
+  /* The CSS reset and body styling remain the same */
+
+.container {
+    width: 90%;
+    max-width: 1000px;
+    margin: auto;
+    padding: 20px;
+    background: #fff;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  }
+  
+  h1 {
+    text-align: center;
+    margin-bottom: 20px;
+  }
+  
+  .sections {
+    display: flex;
+    justify-content: space-between;
+  }
+  
+  .form-section {
+    flex: 1;
+    margin: 0 10px;
+  }
+  
+  /* Adjusting address input width */
+  #address {
+    width: calc(100% - 20px); /* To accommodate for margins */
+  }
+  
+  /* Centering the register button */
+  .register-button {
+    display: block;
+    margin: 0 auto;
+  }
+  
+  /* The rest of the CSS for .form-group, labels, inputs, and button remains the same */
+  
