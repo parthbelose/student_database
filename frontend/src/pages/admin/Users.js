@@ -38,17 +38,17 @@ const Users = () => {
     {
       title: "Teacher",
       dataIndex: "isTeacher",
-      render: (text, record) => <span>{record.isDoctor ? "Yes" : "No"}</span>,
+      render: (text, record) => <span>{record.isTeacher ? "Yes" : "No"}</span>,
     },
-    {
-      title: "Actions",
-      dataIndex: "actions",
-      render: (text, record) => (
-        <div className="d-flex">
-          <button className="btn btn-danger">Block</button>
-        </div>
-      ),
-    },
+    // {
+    //   title: "Actions",
+    //   dataIndex: "actions",
+    //   render: (text, record) => (
+    //     <div className="d-flex">
+    //       <button className="btn btn-danger">Block</button>
+    //     </div>
+    //   ),
+    // },
   ];
 
   return (

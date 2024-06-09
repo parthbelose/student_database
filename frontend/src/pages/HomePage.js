@@ -121,13 +121,13 @@ const HomePage = () => {
           whileHover={{ scale: 1.05 }}
           whileTap={{ scale: 0.95 }}
         >
-          <Button
+          {/* <Button
             type="primary"
             style={{ marginTop: "20px" }}
             onClick={goToProfile} // Changed navigation function to use goToProfile
           >
             Go to Profile
-          </Button>
+          </Button> */}
         </motion.div>
       </motion.div>
     </Layout>
