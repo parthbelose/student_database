@@ -29,7 +29,6 @@ app.use("/api/v1/user", userRoutes);
 app.use("/api/v1/admin", adminRoutes);
 app.use("/api/v1/teacher", teacherRoutes);
 app.use("/api/v1/student", studentRoutes);
-
 app.get('/api/v1/courses/:id', async (req, res) => {
   try {
       const courseId = req.params.id;

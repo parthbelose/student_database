@@ -20,6 +20,26 @@ const getStudentInfoController = async (req, res) => {
   }
 };
 
+const updateProfileController = async (req, res) => {
+  try {
+    const student = await Student.findOneAndUpdate(
+      { userId: req.body.userId },
+      req.body
+    );
+    res.status(201).send({
+      success: true,
+      message: "Student Profile Updated"
+    });
+  } catch (error) {
+    console.log(error);
+    res.status(500).send({
+      success: false,
+      message: "Student Profile Update issue",
+      error,
+    });
+  }
+};
+
 const updateEnrolledCourses = async (req, res) => {
   try {
     console.log(req.body);
@@ -47,4 +67,4 @@ const updateEnrolledCourses = async (req, res) => {
   }
 };
 
-export { updateEnrolledCourses, getStudentInfoController };
+export { updateEnrolledCourses, getStudentInfoController, updateProfileController };

@@ -17,6 +17,8 @@ import Courses from "./pages/teacher/courses";
 import AddCourse from "./pages/teacher/add-course";
 import HallTicketGenerator from "./pages/student/generate_pdf";
 import CourseSelectionForm from "./pages/student/course_select";
+import Sprofile from "./pages/student/profile";
+
 function App() {
   const { loading } = useSelector((state) => state.alerts);
   return (
@@ -111,6 +113,14 @@ function App() {
               element={
                 <ProtectedRoute>
                   < CourseSelectionForm/>
+                </ProtectedRoute>
+              }
+            />
+            <Route
+              path="/student/updateProfile"
+              element={
+                <ProtectedRoute>
+                  < Sprofile/>
                 </ProtectedRoute>
               }
             />

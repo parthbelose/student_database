@@ -14,11 +14,6 @@ export const userMenu = [
     path: "/apply-teacher",
     icon: "fa-solid fa-user-tie",
   },
-  {
-    name: "Profile",
-    path: "/profile",
-    icon: "fa-solid fa-user",
-  },
 ];
 
 // admin menu
@@ -58,7 +53,7 @@ export const studentMenu = [
   },
   {
     name: "Profile",
-    path: "/profile",
+    path: "/student/updateProfile",
     icon: "fa-solid fa-user",
   },
 ];
